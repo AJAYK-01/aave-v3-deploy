@@ -91,6 +91,9 @@ export const NETWORKS_RPC_URL: iParamsPerNetwork<string> = {
     eEthereumNetwork.sepolia
   )}`,
   [eArbitrumNetwork.goerliNitro]: `https://goerli-rollup.arbitrum.io/rpc`,
+  [eArbitrumNetwork.arbitrumSepolia]: `https://arb-sepolia.g.alchemy.com/v2/${getAlchemyKey(
+    eEthereumNetwork.sepolia
+  )}`
 };
 
 export const LIVE_NETWORKS: iParamsPerNetwork<boolean> = {
@@ -174,11 +177,11 @@ export const hardhatNetworkSettings = {
   accounts:
     FORK && !!MNEMONIC
       ? {
-          mnemonic: MNEMONIC,
-          path: MNEMONIC_PATH,
-          initialIndex: 0,
-          count: 10,
-        }
+        mnemonic: MNEMONIC,
+        path: MNEMONIC_PATH,
+        initialIndex: 0,
+        count: 10,
+      }
       : undefined,
 };
 
@@ -246,3 +249,4 @@ export const DETERMINISTIC_DEPLOYMENT = process.env.DETERMINISTIC_DEPLOYMENT
   : null;
 
 export const ETHERSCAN_KEY = process.env.ETHERSCAN_KEY || "";
+export const ARBISCAN_KEY = process.env.ARBISCAN_KEY || "";

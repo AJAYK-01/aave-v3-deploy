@@ -1,4 +1,5 @@
 import {
+  ARBISCAN_KEY,
   DETERMINISTIC_DEPLOYMENT,
   DETERMINISTIC_FACTORIES,
   ETHERSCAN_KEY,
@@ -121,6 +122,10 @@ export default {
       eArbitrumNetwork.goerliNitro,
       421613
     ),
+    [eArbitrumNetwork.arbitrumSepolia]: getCommonNetworkConfig(
+      eArbitrumNetwork.arbitrumSepolia,
+      421614
+    ),
   },
   namedAccounts: {
     ...DEFAULT_NAMED_ACCOUNTS,
@@ -200,6 +205,30 @@ export default {
     ? DETERMINISTIC_FACTORIES
     : undefined,
   etherscan: {
-    apiKey: ETHERSCAN_KEY,
-  },
+    // apiKey: ETHERSCAN_KEY,
+    apiKey: {
+      sepolia: ETHERSCAN_KEY,
+      goerli: ETHERSCAN_KEY,
+      arbisepolia: ARBISCAN_KEY,
+      arbigoerli: ARBISCAN_KEY,
+    },
+    customChains: [
+      {
+        network: "arbisepolia",
+        chainId: 421614,
+        urls: {
+          apiURL: "https://api-sepolia.arbiscan.io/api",
+          browserURL: "https://sepolia.arbiscan.io/"
+        }
+      },
+      {
+        network: "arbigoerli",
+        chainId: 421613,
+        urls: {
+          apiURL: "https://api-goerli.arbiscan.io/api",
+          browserURL: "https://goerli.arbiscan.io/"
+        }
+      }
+    ],
+  }
 };
